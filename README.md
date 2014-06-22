@@ -6,6 +6,7 @@ cpproject provides a directory structure for your C++ project.
     .
     ├── CMakeLists.txt
     ├── README.md
+    ├── UNLICENSE           <- change it to your license
     ├── src
     │   ├── CMakeLists.txt
     │   ├── main.cpp        <- your main function
