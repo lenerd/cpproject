@@ -43,7 +43,7 @@ Requires doxygen.
 
 ### Debugging and testing
 
-Requires gtest.
+Requires svn for gtest download.
 
 For debug build (includes test) use
 

@@ -11,6 +11,8 @@ set (qspa_VERSION_MINOR 1)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -pedantic")
 set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -ggdb3 -O0")
 
+set (EXT_PROJECTS_DIR ext)
+
 include_directories (src)
 add_subdirectory(src)
 
@@ -28,6 +30,7 @@ endif (DOXYGEN_FOUND)
 
 # build tests
 if (CMAKE_BUILD_TYPE MATCHES Debug)
+    add_subdirectory (${EXT_PROJECTS_DIR}/gtest)
     enable_testing()
     add_subdirectory(test)
     add_test(NAME unittest COMMAND ${PROJECT_NAME}_test)
