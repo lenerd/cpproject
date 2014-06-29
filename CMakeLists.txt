@@ -9,8 +9,12 @@ set (qspa_VERSION_MAJOR 0)
 set (qspa_VERSION_MINOR 1)
 
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -pedantic")
-set (CMAKE_CXX_FLAGS_DEBUG "-ggdb3 -O0")
+set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -ggdb3 -O0")
 
+include_directories (src)
+add_subdirectory(src)
+
+# build documentation
 find_package (Doxygen)
 if (DOXYGEN_FOUND)
     configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
@@ -22,8 +26,9 @@ if (DOXYGEN_FOUND)
     )
 endif (DOXYGEN_FOUND)
 
-
-include_directories (src)
-
-add_subdirectory(src)
-add_subdirectory(test)
+# build tests
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    enable_testing()
+    add_subdirectory(test)
+    add_test(NAME unittest COMMAND ${PROJECT_NAME}_test)
+endif (CMAKE_BUILD_TYPE MATCHES Debug)
